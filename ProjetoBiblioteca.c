@@ -1,28 +1,79 @@
 #include <stdio.h>
 #include <string.h>
 
-#define TAMANHO_ACERVO 20
-
+/**
+ * @brief Estrutura para representar os livros do acervo.
+ */
 struct Livro {
-    int codigo;
-    char titulo[50];
-    char autor[30];
-    char area[30];
-    int ano;
-    char editora[30];
+    int codigo;         ///< Codigo identificador do livro
+    char titulo[50];    ///< Titulo do livro 
+    char autor[30];     ///< Nome do autor
+    char area[30];      ///< Area tematica do livro
+    int ano;            ///< Ano de publicacao do livro
+    char editora[30];   ///< Nome da editora do livro
 };
 
-void limpar_buffer(); //Função usada para limpar o buffer do teclado. Necessária quando usamos scanf seguido de fgets.
-void salvarAcervo(struct Livro acervo[], int qtd); //Salva o acervo atual em um arquivo texto (acervo.txt).
-int carregarAcervo(struct Livro acervo[]); //Carrega o acervo do arquivo acervo.txt (se existir).
-int cadastrarLivros(struct Livro acervo[], int qtdAtual, int tamanhoMax); //Cadastra novos livros no acervo.
-void imprimirLivros(struct Livro acervo[], int qtd); //Imprime todos os livros cadastrados.
-void pesquisarLivros(struct Livro acervo[], int qtd); //Pesquisa um livro pelo código informado.
-void ordenarLivros(struct Livro acervo[], int qtd); //Ordena os livros pelo ano usando Bubble Sort.
+/**
+ * @defgroup Acervo Funções relacionadas ao acervo de livros
+ * @{
+ */
 
+/**
+ * @brief Função para limpar o buffer do teclado.
+ * @ingroup Acervo
+ */
+void limpar_buffer();
+
+/**
+ * @brief Função para salvar o acervo em arquivo de texto.
+ * @ingroup Acervo
+ */
+void salvarAcervo(struct Livro acervo[], int qtd); 
+
+/**
+ * @brief Função para carregar o acervo se existir.
+ * @ingroup Acervo
+ */
+int carregarAcervo(struct Livro acervo[]); 
+
+/**
+ * @brief Função para cadastrar os livros no acervo.
+ * @ingroup Acervo
+ */
+int cadastrarLivros(struct Livro acervo[], int qtdAtual, int tamanhoMax);
+
+/**
+ * @brief Função para imprimir os livros cadastrados no acervo.
+ * @ingroup Acervo
+ */
+void imprimirLivros(struct Livro acervo[], int qtd);
+
+/**
+ * @brief Função para pesquisar pelo codigo informado os livros no acervo.
+ * @ingroup Acervo
+ */
+void pesquisarLivros(struct Livro acervo[], int qtd);
+
+/**
+ * @brief Função para ordenar os livros do acervo.
+ * @ingroup Acervo
+ */
+void ordenarLivros(struct Livro acervo[], int qtd);
+
+/** @} */
+
+/**
+ * @brief Função principal do programa.
+ *
+ * @details Exibe o menu principal, gerencia a interação com o usuário
+ * e chama as funções responsáveis por cadastrar, imprimir, pesquisar,
+ * ordenar e salvar os livros do acervo.
+ *
+ * @return Retorna 0 ao finalizar.
+ */
 int main(void) {
 
-    struct Livro acervo[TAMANHO_ACERVO];
+    struct Livro acervo[20];
     int menu;
     int qtdLivros = 0;
 
@@ -42,7 +93,7 @@ int main(void) {
         switch(menu) {
 
             case 1:
-                qtdLivros = cadastrarLivros(acervo, qtdLivros, TAMANHO_ACERVO);
+                qtdLivros = cadastrarLivros(acervo, qtdLivros, 20);
                 break;
 
             case 2:
@@ -83,19 +134,19 @@ int main(void) {
     return 0;
 }
 
-void limpar_buffer(){ // Descarta caracteres até encontrar '\n'
+void limpar_buffer(){ 
     int c;
     while((c = getchar()) != '\n' && c != EOF){}
 }
 
-void salvarAcervo(struct Livro acervo[], int qtd) { // Abre arquivo para escrita (sobrescreve o conteúdo)
+void salvarAcervo(struct Livro acervo[], int qtd) { //Grava cada livro no arquivo em formato CSV simples.
     FILE *arq = fopen("acervo.txt", "w");
     if(!arq){
         printf("Erro ao salvar arquivo!\n");
         return;
     }
 
-    for(int i = 0; i < qtd; i++){ // Salva cada livro em uma linha separada
+    for(int i = 0; i < qtd; i++){ 
         fprintf(arq, "%d;%s;%s;%s;%d;%s\n",
             acervo[i].codigo,
             acervo[i].titulo,
@@ -109,7 +160,7 @@ void salvarAcervo(struct Livro acervo[], int qtd) { // Abre arquivo para escrita
     printf("Acervo salvo!\n");
 }
 
-int carregarAcervo(struct Livro acervo[]) { // Abre arquivo para leitura
+int carregarAcervo(struct Livro acervo[]) { //Carrega o acervo de livros salvos (se existir).
     FILE *arq = fopen("acervo.txt", "r");
     if(!arq){
         printf("Primeira execucao, nenhum arquivo encontrado.\n");
@@ -118,14 +169,14 @@ int carregarAcervo(struct Livro acervo[]) { // Abre arquivo para leitura
 
     int qtd = 0;
 
-    while(qtd < TAMANHO_ACERVO && 
+    while(qtd < 20 &&
         fscanf(arq, "%d;%49[^;];%29[^;];%29[^;];%d;%29[^\n]\n",
             &acervo[qtd].codigo,
             acervo[qtd].titulo,
             acervo[qtd].autor,
             acervo[qtd].area,
             &acervo[qtd].ano,
-            acervo[qtd].editora) == 6) // Lê cada linha do arquivo até acabar ou chegar ao limite
+            acervo[qtd].editora) == 6) 
     {
         qtd++;
     }
@@ -135,19 +186,19 @@ int carregarAcervo(struct Livro acervo[]) { // Abre arquivo para leitura
     return qtd;
 }
 
-int cadastrarLivros(struct Livro acervo[], int qtdAtual, int tamanhoMax){ // Pergunta quantos novos livros serão cadastrados
+int cadastrarLivros(struct Livro acervo[], int qtdAtual, int tamanhoMax){ 
 
     int qtdNova;
     printf("Quantos livros deseja cadastrar (max %d)? ", tamanhoMax - qtdAtual);
     scanf("%d", &qtdNova);
     limpar_buffer();
 
-    if(qtdNova < 1 || qtdAtual + qtdNova > tamanhoMax){ // Validação da quantidade pedida
+    if(qtdNova < 1 || qtdAtual + qtdNova > tamanhoMax){
         printf("Quantidade invalida!\n");
         return qtdAtual;
     }
 
-    for(int i = qtdAtual; i < qtdAtual + qtdNova; i++){ // Realiza o cadastro dos novos livros
+    for(int i = qtdAtual; i < qtdAtual + qtdNova; i++){ 
 
         printf("\n-----CADASTRO %d-----\n", i + 1);
 
@@ -156,8 +207,8 @@ int cadastrarLivros(struct Livro acervo[], int qtdAtual, int tamanhoMax){ // Per
         limpar_buffer();
 
         printf("Titulo: ");
-        fgets(acervo[i].titulo, 50, stdin); // fgets usado para strings, removendo a quebra de linha
-        acervo[i].titulo[strcspn(acervo[i].titulo, "\n")] = 0;
+        fgets(acervo[i].titulo, 50, stdin); 
+        acervo[i].titulo[strcspn(acervo[i].titulo, "\n")] = 0; //Remove o \n do final.
 
         printf("Autor: ");
         fgets(acervo[i].autor, 30, stdin);
@@ -176,12 +227,12 @@ int cadastrarLivros(struct Livro acervo[], int qtdAtual, int tamanhoMax){ // Per
         acervo[i].editora[strcspn(acervo[i].editora, "\n")] = 0;
     }
 
-    return qtdAtual + qtdNova; // Retorna a nova quantidade total
+    return qtdAtual + qtdNova;
 }
 
-void imprimirLivros(struct Livro acervo[], int qtd){
+void imprimirLivros(struct Livro acervo[], int qtd){ //Imprime cada livro cadastrado.
     printf("\n-----LISTA DE LIVROS-----\n");
-    for(int i = 0; i < qtd; i++){  // Percorre o vetor imprimindo cada livro
+    for(int i = 0; i < qtd; i++){  
         printf("\nCodigo: %d\nTitulo: %s\nAutor: %s\nArea: %s\nAno: %d\nEditora: %s\n", 
             acervo[i].codigo,
             acervo[i].titulo,
@@ -199,7 +250,7 @@ void pesquisarLivros(struct Livro acervo[], int qtd){
     printf("\nDigite o codigo do livro: ");
     scanf("%d", &codigo);
 
-    for(int i = 0; i < qtd; i++){ // Busca linear pelo código
+    for(int i = 0; i < qtd; i++){ //Procura um livro com o código informado.
         if(acervo[i].codigo == codigo){
             printf("\n-----LIVRO ENCONTRADO-----\n");
             printf("Codigo: %d\nTitulo: %s\nAutor: %s\nArea: %s\nAno: %d\nEditora: %s\n",
@@ -223,9 +274,9 @@ void pesquisarLivros(struct Livro acervo[], int qtd){
 void ordenarLivros(struct Livro acervo[], int qtd){
     struct Livro temp;
 
-    for(int i = 0; i < qtd - 1; i++){  // Bubble Sort para ordenar por ano
+    for(int i = 0; i < qtd - 1; i++){  
         for(int j = 0; j < qtd - 1 - i; j++){
-            if(acervo[j].ano > acervo[j+1].ano){
+            if(acervo[j].ano > acervo[j+1].ano){ //Compara os anos: se o livro atual (j) for mais novo que o próximo (j+1).
                 temp = acervo[j];
                 acervo[j] = acervo[j+1];
                 acervo[j+1] = temp;
