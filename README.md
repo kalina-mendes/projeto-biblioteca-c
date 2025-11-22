@@ -137,10 +137,6 @@ Para gerar a documentação automaticamente com Doxygen:
 
 4. Abra a documentação gerada em `html/index.html`
 
-## 📄 Licença
-
-Este projeto está licenciado sob a [Licença MIT](LICENSE) - veja o arquivo LICENSE para mais detalhes.
-
 ## 👨‍💻 Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
