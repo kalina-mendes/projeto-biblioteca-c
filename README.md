@@ -13,7 +13,7 @@ Sistema simples de gerenciamento de biblioteca desenvolvido em C para cadastro, 
 ## 📋 Informações Armazenadas
 
 Cada livro contém os seguintes dados:
-
+https://github.com/kalina-mendes/projeto-biblioteca-c/blob/main/README.md
 * Código identificador
 * Título
 * Autor
@@ -153,4 +153,5 @@ Este projeto está sob a licença MIT.
 
 ## 👤 Autor
 
+Kalina Mendes
 Desenvolvido como projeto acadêmico de Estruturas de Dados.
