@@ -13,7 +13,7 @@ Sistema simples de gerenciamento de biblioteca desenvolvido em C para cadastro, 
 ## 📋 Informações Armazenadas
 
 Cada livro contém os seguintes dados:
-https://github.com/kalina-mendes/projeto-biblioteca-c/blob/main/README.md
+
 * Código identificador
 * Título
 * Autor
@@ -147,11 +147,9 @@ doxygen Doxyfile
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT.
-
 ## 👤 Autor
 
-Kalina Mendes
-Desenvolvido como projeto acadêmico de Estruturas de Dados.
+**Kalina Mendes**
+
+🔗 GitHub: [kalina-mendes](https://github.com/kalina-mendes)  
+🎓 Projeto acadêmico de Estruturas de Dados
