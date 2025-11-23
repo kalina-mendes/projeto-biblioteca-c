@@ -4,28 +4,30 @@ Sistema simples de gerenciamento de biblioteca desenvolvido em C para cadastro, 
 
 ## 🚀 Funcionalidades
 
-- **Cadastrar livros**: Adicione novos livros ao acervo com informações completas
-- **Listar livros**: Visualize todos os livros cadastrados
-- **Pesquisar por código**: Encontre livros específicos através do código identificador
-- **Ordenar por ano**: Organize o acervo por ano de publicação
-- **Persistência de dados**: Os dados são salvos automaticamente em arquivo de texto
+* **Cadastrar livros**: Adicione novos livros ao acervo com informações completas
+* **Listar livros**: Visualize todos os livros cadastrados
+* **Pesquisar por código**: Encontre livros específicos através do código identificador
+* **Ordenar por ano**: Organize o acervo por ano de publicação
+* **Persistência de dados**: Os dados são salvos automaticamente em arquivo de texto
 
 ## 📋 Informações Armazenadas
 
 Cada livro contém os seguintes dados:
-- Código identificador
-- Título
-- Autor
-- Área temática
-- Ano de publicação
-- Editora
+
+* Código identificador
+* Título
+* Autor
+* Área temática
+* Ano de publicação
+* Editora
 
 ## 🛠️ Compilação e Execução
 
 ### Requisitos
-- Compilador C (GCC, Clang, etc.)
-- Sistema operacional: Windows, Linux ou macOS
-- **Sem dependências externas**: utiliza apenas bibliotecas padrão (`stdio.h` e `string.h`)
+
+* Compilador C (GCC, Clang, etc.)
+* Sistema operacional: Windows, Linux ou macOS
+* Sem dependências externas: utiliza apenas bibliotecas padrão (`stdio.h` e `string.h`)
 
 ### Compilar
 
@@ -41,7 +43,7 @@ gcc acervo.c -o acervo
 ```
 
 **Windows:**
-```bash
+```cmd
 acervo.exe
 ```
 
@@ -64,9 +66,9 @@ Os dados são salvos no arquivo `acervo.txt` no formato CSV (separado por ponto 
 
 ## ⚙️ Limitações
 
-- Capacidade máxima: 20 livros
-- Tamanho máximo do título: 50 caracteres
-- Tamanho máximo dos demais campos de texto: 30 caracteres
+* Capacidade máxima: 20 livros
+* Tamanho máximo do título: 50 caracteres
+* Tamanho máximo dos demais campos de texto: 30 caracteres
 
 ## 📝 Exemplo de Uso
 
@@ -92,51 +94,63 @@ Editora: Prentice Hall
 
 ## 🔧 Estrutura do Código
 
-- `struct Livro`: Estrutura para representação dos livros
-- `main()`: Função principal com loop do menu
-- `cadastrarLivros()`: Cadastro de novos livros
-- `imprimirLivros()`: Listagem do acervo
-- `pesquisarLivros()`: Busca por código
-- `ordenarLivros()`: Ordenação por ano (Bubble Sort)
-- `salvarAcervo()`: Persistência em arquivo
-- `carregarAcervo()`: Carregamento dos dados salvos
+* `struct Livro`: Estrutura para representação dos livros
+* `main()`: Função principal com loop do menu
+* `cadastrarLivros()`: Cadastro de novos livros
+* `imprimirLivros()`: Listagem do acervo
+* `pesquisarLivros()`: Busca por código
+* `ordenarLivros()`: Ordenação por ano (Bubble Sort)
+* `salvarAcervo()`: Persistência em arquivo
+* `carregarAcervo()`: Carregamento dos dados salvos
 
 ## 📚 Documentação
 
-O código possui **documentação completa em formato Doxygen**, incluindo:
-- Descrição detalhada de todas as funções
-- Documentação da estrutura de dados
-- Agrupamento lógico das funções (`@defgroup` e `@ingroup`)
-- Comentários sobre parâmetros e comportamento
+O código possui documentação completa em formato Doxygen, incluindo:
+
+* Descrição detalhada de todas as funções
+* Documentação da estrutura de dados
+* Agrupamento lógico das funções (`@defgroup` e `@ingroup`)
+* Comentários sobre parâmetros e comportamento
 
 ### Gerar Documentação HTML
 
 Para gerar a documentação automaticamente com Doxygen:
 
-1. Instale o Doxygen:
-   ```bash
-   # Ubuntu/Debian
-   sudo apt-get install doxygen
-   
-   # macOS
-   brew install doxygen
-   
-   # Windows
-   # Baixe em: https://www.doxygen.nl/download.html
-   ```
+1. **Instale o Doxygen:**
 
-2. Crie um arquivo de configuração:
-   ```bash
-   doxygen -g Doxyfile
-   ```
+```bash
+# Ubuntu/Debian
+sudo apt-get install doxygen
 
-3. Gere a documentação:
-   ```bash
-   doxygen Doxyfile
-   ```
+# macOS
+brew install doxygen
 
-4. Abra a documentação gerada em `html/index.html`
+# Windows
+# Baixe em: https://www.doxygen.nl/download.html
+```
+
+2. **Crie um arquivo de configuração:**
+
+```bash
+doxygen -g Doxyfile
+```
+
+3. **Gere a documentação:**
+
+```bash
+doxygen Doxyfile
+```
+
+4. **Abra a documentação** gerada em `html/index.html`
 
 ## 👨‍💻 Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT.
+
+## 👤 Autor
+
+Desenvolvido como projeto acadêmico de Estruturas de Dados.
