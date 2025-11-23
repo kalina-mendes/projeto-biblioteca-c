@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#define MAX_LIVROS 20
 
 /**
  * @brief Estrutura para representar os livros do acervo.
@@ -73,7 +74,7 @@ void ordenarLivros(struct Livro acervo[], int qtd);
  */
 int main(void) {
 
-    struct Livro acervo[20];
+    struct Livro acervo[MAX_LIVROS];
     int menu;
     int qtdLivros = 0;
 
@@ -93,7 +94,7 @@ int main(void) {
         switch(menu) {
 
             case 1:
-                qtdLivros = cadastrarLivros(acervo, qtdLivros, 20);
+                qtdLivros = cadastrarLivros(acervo, qtdLivros, MAX_LIVROS);
                 break;
 
             case 2:
@@ -169,7 +170,7 @@ int carregarAcervo(struct Livro acervo[]) { //Carrega o acervo de livros salvos 
 
     int qtd = 0;
 
-    while(qtd < 20 &&
+    while(qtd < MAX_LIVROS &&
         fscanf(arq, "%d;%49[^;];%29[^;];%29[^;];%d;%29[^\n]\n",
             &acervo[qtd].codigo,
             acervo[qtd].titulo,
